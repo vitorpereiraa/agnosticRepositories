@@ -1,29 +1,27 @@
-package com.github.vitorpereiraa.agnosticRepositories.persistence.document;
+package com.github.vitorpereiraa.agnosticRepositories.persistence;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.github.vitorpereiraa.agnosticRepositories.persistence.ProductSchema;
-
 import jakarta.persistence.Id;
-import lombok.Getter;
 
+@Profile("documentPersistence")
 @Document
-@Getter
-public class ProductDocumentSchema implements ProductSchema {
+public class ProductDocumentSchema {
 
     @Id
-    private Long productID;
+    public Long productID;
 
     @Indexed(unique = true)
-    private String sku;
+    public String sku;
 
     @Field
-    private String designation;
+    public String designation;
 
     @Field
-    private String description;
+    public String description;
 
     protected ProductDocumentSchema(){}
 

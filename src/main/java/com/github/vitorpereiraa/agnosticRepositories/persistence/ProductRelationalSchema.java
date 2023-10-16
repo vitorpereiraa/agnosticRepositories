@@ -1,6 +1,6 @@
-package com.github.vitorpereiraa.agnosticRepositories.persistence.relational;
+package com.github.vitorpereiraa.agnosticRepositories.persistence;
 
-import com.github.vitorpereiraa.agnosticRepositories.persistence.ProductSchema;
+import org.springframework.context.annotation.Profile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,24 +8,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
 
+@Profile("relationalPersistence")
 @Entity
-@Getter
 @Table(name="Product")
-public class ProductRelationalSchema implements ProductSchema {
+public class ProductRelationalSchema {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long productID;
+    public Long productID;
 
     @Column(nullable = false, unique = true)
     public String sku;
 
     @Column(nullable = false)
-    private String designation;
+    public String designation;
 
     @Column(nullable = false)
-    private String description;
+    public String description;
 
     protected ProductRelationalSchema(){}
 
